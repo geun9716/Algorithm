@@ -14,39 +14,42 @@ public class P10757 {
 		int cnt = Math.max(A.length, B.length);
 		result = new char [cnt+1];
 		int tmp_a, tmp_b;
-		int pre;
-		while(cnt >= 0 && (len_a >= 0 && len_b >= 0)) {
-			if (len_a >= 0) {
-				tmp_a = (A[len_a--]-'0');
-			}else {
-				tmp_a = 0;
-			}
-			if (len_b >= 0) {
-				tmp_b = (B[len_b--]-'0');
-			} else {
-				tmp_b = 0;
-			}
-			int tmp = tmp_a + tmp_b;
+		int i = 0;
+		while(len_a >= 0 && len_b >= 0) {
+			tmp_a = (A[len_a--]-'0');
+			tmp_b = (B[len_b--]-'0');
+			
+			int tmp = result[i] + tmp_a + tmp_b;
+			
 			if(tmp >= 10) {
-				result[cnt-1] = (char)(tmp / 10);
+				result[i+1] = (char)(tmp / 10);
 			}
-			result[cnt] = (char)(result[cnt] + tmp % 10 + '0');
-			cnt--;
-			System.out.println(result);
+			result[i] = (char)(tmp%10 + '0');
+			i++;
 		}
-		System.out.println(len_a);
-		System.out.println(len_b);
 		
-//		while(len_a >= 0) {
-//			result[cnt--] = A[len_a--];
-//		}
-//		
-//		while(len_b >= 0 ) {
-//			result[cnt--] = B[len_a--];
-//		}
-
-		System.out.println(result);
+		while(len_a >= 0) {
+			int tmp = (char)(result[i] + (A[len_a--]-'0'));
+			if(tmp >= 10) {
+				result[i+1] = (char)(tmp/10) ;
+			}
+			result[i++] = (char)(tmp%10 + '0');
+		}
+		while(len_b >= 0) {
+			int tmp = (char)(result[i] + (B[len_b--]-'0'));
+			if(tmp >= 10) {
+				result[i+1] = (char)(tmp/10) ;
+			}
+			result[i++] = (char)(tmp%10 + '0');
+		}
+		result[cnt] += '0';
+		if (result[cnt] == '0') {
+			cnt-=1;
+		}
 		
+		for(int j = cnt; j >= 0 ; j--) {
+			System.out.print(result[j]);
+		}
 		
 		sc.close();
 	}

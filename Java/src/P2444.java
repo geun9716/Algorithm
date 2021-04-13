@@ -1,11 +1,10 @@
 import java.util.Scanner;
 
-public class Main {
-	
+public class P2444 {
+	static int N;
 	public static void main(String[] args) {
-		int N;
+		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-		
 		N = sc.nextInt();
 		
 		for (int i = 1; i <= N; i++) {
@@ -26,6 +25,7 @@ public class Main {
 			}
 			System.out.println();
 		}
+		
 		sc.close();
 	}
 
