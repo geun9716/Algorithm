@@ -1,14 +1,10 @@
 # Algorithm
 Algorithm Study
 
-# 이번주 문제
-- [나무 자르기](https://www.acmicpc.net/problem/2805)
-- [수들의 합2](https://www.acmicpc.net/problem/2003)
-- [입국심사](https://programmers.co.kr/learn/courses/30/lessons/43238)
----
-- [돌 게임](https://www.acmicpc.net/problem/9655)
-- [1, 2, 3 더하기](https://www.acmicpc.net/problem/9095)
-- [N으로 표현](https://programmers.co.kr/learn/courses/30/lessons/42895)
+# 이번주 문제 (3월 2째주)
+- [선수과목](https://www.acmicpc.net/problem/14567) - 위상정렬
+- [문자열집합](https://acmicpc.net/problem/14425) - 트라이
+- [색종이 만들기](https://www.acmicpc.net/problem/2630) - 분할정복법
 
 ## 리뷰 작성 방식
 1. 코드관련 리뷰는 __Commits__ 에 작성합니다.
