@@ -1,10 +1,11 @@
 # Algorithm
 Algorithm Study
 
-# 이번주 문제 (3월 2째주)
-- [트리](https://www.acmicpc.net/problem/1068)
-- [로프](https://www.acmicpc.net/problem/2217)
-- [상어초등학교](https://www.acmicpc.net/problem/21608)
+# 이번주 문제 (3월 4째주)
+- [효율적인 해킹](https://www.acmicpc.net/problem/1325) - 그래프
+- [부분문자열](https://www.acmicpc.net/problem/6550) - 부분문자열
+- [연속합](https://www.acmicpc.net/problem/21608) - DP
+- [GCD 합](https://www.acmicpc.net/problem/9613) - 수학 
 
 ## 리뷰 작성 방식
 1. 코드관련 리뷰는 __Commits__ 에 작성합니다.
