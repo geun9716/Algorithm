@@ -4,7 +4,7 @@ Algorithm Study
 # 이번주 문제 (3월 4째주)
 - [효율적인 해킹](https://www.acmicpc.net/problem/1325) - 그래프
 - [부분문자열](https://www.acmicpc.net/problem/6550) - 부분문자열
-- [연속합](https://www.acmicpc.net/problem/21608) - DP
+- [연속합](https://www.acmicpc.net/problem/1912) - DP
 - [GCD 합](https://www.acmicpc.net/problem/9613) - 수학 
 
 ## 리뷰 작성 방식
