@@ -6,6 +6,7 @@ Algorithm Study
 - [부분문자열](https://www.acmicpc.net/problem/6550) - 부분문자열
 - [연속합](https://www.acmicpc.net/problem/1912) - DP
 - [GCD 합](https://www.acmicpc.net/problem/9613) - 수학 
+- [겹치는 건 싫어](https://www.acmicpc.net/problem/20922)
 
 ## 리뷰 작성 방식
 1. 코드관련 리뷰는 __Commits__ 에 작성합니다.
