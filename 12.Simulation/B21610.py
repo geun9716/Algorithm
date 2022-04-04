@@ -11,20 +11,17 @@ def copyWater(r, c):
     for i in range(4):
         tx = r+mx[i]
         ty = c+my[i]
-
-        if 0 <= tx < N and 0 <= ty < N and A[tx][ty] > 0:
-                cnt += 1
-        
+        if tx < 0 or N <= tx or ty < 0 or N <= ty:
+            continue
+        if A[tx][ty] > 0:
+            cnt += 1
     A[r][c] += cnt
     return
 
 def sol():
     global N, A
     N, M = map(int, input().split())
-    A = []
-
-    for _ in range(N):
-        A.append(list(map(int, input().split())))
+    A = [list(map(int, input().split())) for _ in range(N)]
 
     # pp.pprint(A)
     mx = [0, 0, -1, -1, -1, 0, 1, 1, 1]
@@ -43,6 +40,9 @@ def sol():
             # print(tx, ty, end="|")
             A[tx][ty] += 1
             clouds.append((tx, ty))
+        # print()
+
+        # pp.pprint(A)
 
         for r, c in clouds:
             # print(r, c, end="|")
