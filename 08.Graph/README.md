@@ -370,6 +370,7 @@ __소스코드 구현(Python)__
 def pprint(arr):
     for line in arr:
         print(line)
+
 # 5 7
 # 0 1 1
 # 0 2 3
@@ -380,54 +381,54 @@ def pprint(arr):
 # 3 4 5
 
 import sys
+input = sys.stdin.readline
 
-N, M = map(int, sys.stdin.readline().split(" "))
-W = [[float('inf')]*N for _ in range(N)]
+N, M = map(int, input().split())
+G = [[float('inf')] * N for _ in range(N)]
 
 for _ in range(M):
-    i, j, w = map(int, sys.stdin.readline().split(" "))
-    W[i][j] = w
-    W[j][i] = w
+    a, b, c = map(int, input().split())
+    G[a][b] = c
+    G[b][a] = c 
 
 for i in range(N):
-    W[i][i] = 0
+    G[i][i] = 0
 
-pprint(W)
+pprint(G)
 
 def prim(G, source):
-    # init
     answer = []
     dist = [G[source][i] for i in range(N)]
-    nearest = [0 for _ in range(N)]
+    nearest = [0] * N
 
-    print(dist)
-    print(nearest)
-    #find min idx
-    
     while len(answer) < N:
-        min = float('inf')
+        minValue = float('inf')
         vnear = 0
-        for i in range(1, N):
-            if 0 <= dist[i] < min:
-                min = dist[i]
+
+        for i in range(N):
+            if 0 < dist[i] < minValue:
+                minValue = dist[i]
                 vnear = i
-        if min == float('inf') and vnear == 0:
-            break
-        print(min, vnear)
-        # add answer
-        answer.append((vnear, min))
-        dist[vnear] = -1
         
-        # renew
+        if minValue == float('inf') and vnear == 0:
+            break
+        
+        answer.append((vnear, minValue))
+        dist[vnear] = -1
+
+        print(dist)
+        print(vnear)
+
+        #Update Dist
         for i in range(1, N):
             if G[i][vnear] < dist[i]:
                 dist[i] = G[i][vnear]
                 nearest[i] = vnear
-        print(dist)
-        print(nearest)
-
+    
     return answer
-print(prim(W, 0))
+
+
+print(prim(G, 0))
 ```
 
 ### 크루스칼 알고리즘
@@ -435,5 +436,71 @@ print(prim(W, 0))
 
 __알고리즘 단계__
 1. 이음선을 가중치가 작은 것부터 차례로 정렬한다.
-2. 
+2. 사이클이 형성되지 않는 가중치가 가장 작은 간선을 선택한다.
+3. 총 V-1개의 간선이 선택 될 때까지 반복한다.
 
+사이클이 형성되었는지 아닌지를 찾기 위해서 분리집합(Disjoint Set)을 사용한다. 즉, 간선이 스패닝 트리에 추가될 대 마다, Parent 관계를 만들어서 두 정점이 같은 최상위 Parent를 갖는다면 사이클이 발생함을 의미한다. 사이클이 발생하지 않는 경우에는 서로의 최상위 Parent를 연결한다.
+
+또한, 작은 가중치의 이음선을 찾기위해 최소 힙을 이용한다. 소스코드는 다음과 같다.
+
+
+__소스 코드 구현 (Python)__
+```
+def pprint(arr):
+    for line in arr:
+        print(line)
+# 5 7
+# 0 1 1
+# 0 2 3
+# 1 2 3
+# 1 3 6
+# 2 3 4
+# 2 4 2
+# 3 4 5
+
+import sys
+import heapq as hq
+
+N, M = map(int, sys.stdin.readline().split(" "))
+W = [[float('inf')] * N for _ in range(N)]
+global parent
+parent = [i for i in range(N)]
+
+h = []
+for _ in range(M):
+    i, j, w = map(int, sys.stdin.readline().split(" "))
+    hq.heappush(h, (w, i, j))
+
+print(h)
+
+def findRoot(x):
+    if parent[x] == x:
+        return x
+    parent[x] = findRoot(parent[x])
+    return parent[x]
+
+def union(u, v):
+    root1 = findRoot(u)
+    root2 = findRoot(v)
+    parent[root2] = root1
+
+def Kruskal(heap):
+    answer = []    
+    while len(answer) < (N-1) and heap:
+        w, i, j = hq.heappop(heap)
+        print(w, i, j)
+        
+        if findRoot(i) == findRoot(j):
+            continue
+        
+        union(i, j)
+        answer.append((i, j, w))
+        #setRoot
+        print(parent)
+
+    return answer
+
+print(Kruskal(h))
+```
+
+Kruskal은 간선 위주이고, Prim은 정점 위주의 알고리즘이다. 그래프 내에 적은 숫자의 간선을 갖는 희소 그래프(Sparse Graph)의 경우에는 Kruskal이 적합하며, 그래프에 간선이 많이 존재하는 밀집 그래프(Dense Graph)의 경우에는 Prim 알고리즘이 적합하다.
