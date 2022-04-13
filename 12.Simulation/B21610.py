@@ -22,7 +22,7 @@ def sol():
     global N, A
     N, M = map(int, input().split())
     A = [list(map(int, input().split())) for _ in range(N)]
-
+    
     # pp.pprint(A)
     mx = [0, 0, -1, -1, -1, 0, 1, 1, 1]
     my = [0, -1, -1, 0, 1, 1, 1, 0, -1]
@@ -43,20 +43,21 @@ def sol():
         # print()
 
         # pp.pprint(A)
-
+        visited = [[False] * N for _ in range(N)]
         for r, c in clouds:
             # print(r, c, end="|")
             copyWater(r, c)
+            visited[r][c] = True
         # print("\n# copyWater")
         # pp.pprint(A)
+        # pp.pprint(visited)
         tmp = deque([])
         for i in range(N):
             for j in range(N):
-                if A[i][j] >= 2 and (i, j) not in clouds:
+                if A[i][j] >= 2 and not visited[i][j]:
                     A[i][j] -= 2
                     tmp.append((i, j))
         clouds = tmp
         # pp.pprint(A)
-        # print(clouds)
     print(sum(sum(b) for b in A))
 sol()
